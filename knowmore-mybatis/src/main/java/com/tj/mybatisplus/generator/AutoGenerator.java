@@ -506,14 +506,14 @@ public class AutoGenerator {
         }
         bw.newLine();
         if (config.getIdType() != IdType.ID_WORKER) {
-            bw.write("import com.baomidou.mybatisplus.annotations.IdType;");
+            bw.write("import com.tj.mybatisplus.annotations.IdType;");
             bw.newLine();
         }
-        bw.write("import com.baomidou.mybatisplus.annotations.TableField;");
+        bw.write("import com.tj.mybatisplus.annotations.TableField;");
         bw.newLine();
-        bw.write("import com.baomidou.mybatisplus.annotations.TableId;");
+        bw.write("import com.tj.mybatisplus.annotations.TableId;");
         bw.newLine();
-        bw.write("import com.baomidou.mybatisplus.annotations.TableName;");
+        bw.write("import com.tj.mybatisplus.annotations.TableName;");
         bw.newLine();
         bw = buildClassComment(bw, tableComment);
         bw.newLine();
@@ -639,9 +639,9 @@ public class AutoGenerator {
         bw.write("import " + config.getEntityPackage() + "." + beanName + ";");
         bw.newLine();
         if (config.getConfigIdType() == ConfigIdType.STRING) {
-            bw.write("import com.baomidou.mybatisplus.mapper.CommonMapper;");
+            bw.write("import com.tj.mybatisplus.mapper.CommonMapper;");
         } else {
-            bw.write("import com.baomidou.mybatisplus.mapper.AutoMapper;");
+            bw.write("import com.tj.mybatisplus.mapper.AutoMapper;");
         }
         bw.newLine();
 
@@ -708,9 +708,9 @@ public class AutoGenerator {
         bw.write("import " + config.getEntityPackage() + "." + beanName + ";");
         bw.newLine();
         if (config.getConfigIdType() == ConfigIdType.STRING) {
-            bw.write("import com.baomidou.framework.service.ICommonService;");
+            bw.write("import com.tj.framework.service.ICommonService;");
         } else {
-            bw.write("import com.baomidou.framework.service.ISuperService;");
+            bw.write("import com.tj.framework.service.ISuperService;");
         }
         bw.newLine();
 

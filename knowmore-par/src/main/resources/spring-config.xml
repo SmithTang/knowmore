@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        	http://www.springframework.org/schema/context
+        	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+     		http://www.springframework.org/schema/aop
+     		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+     		http://www.springframework.org/schema/tx
+       		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       		http://www.springframework.org/schema/util
+       		http://www.springframework.org/schema/util/spring-util-4.0.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <context:annotation-config />
+    
+    <!-- 使用annotation模式 -->
+    <!-- <context:component-scan base-package="org.ischool">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan> -->
+    <context:component-scan base-package="com.tj.knowmore.*" />
+
+    <task:annotation-driven/>
+
+    <bean id="propertyPlaceholderConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:application.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--<bean class="org.ischool.core.utils.spring.SpringContextUtil"></bean>-->
+
+    <aop:config>
+        <!-- 设置pointCut表示哪些方法要加入事务处理 -->
+        <!-- 以下的事务是声明在DAO中，但是通常都会在Service来处理多个业务对象逻辑的关系，注入删除，更新等，此时如果在执行了一个步骤之后抛出异常
+            就会导致数据不完整，所以事务不应该在DAO层处理，而应该在service，这也就是Spring所提供的一个非常方便的工具，声明式事务 -->
+        <aop:pointcut id="allMethods"
+                      expression="execution(* com.tj.knowmore..service..*.*(..))" />
+        <!-- 通过advisor来确定具体要加入事务控制的方法 -->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="allMethods" />
+    </aop:config>
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <!-- 让所有的方法都加入事务管理，为了提高效率，可以把一些查询之类的方法设置为只读的事务 -->
+            <tx:method name="*" read-only="false" />
+            <!-- 以下方法都是可能设计修改的方法，就无法设置为只读 -->
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="clear*" propagation="REQUIRED" />
+            <tx:method name="change*" propagation="REQUIRED" />
+            <tx:method name="start*" propagation="REQUIRED" />
+            <tx:method name="order" propagation="REQUIRED" />
+            
+            <tx:method name="get*" read-only="true" />  
+            <tx:method name="query*" read-only="true" />
+            <tx:method name="find*" read-only="true" />  
+            <tx:method name="select*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 加载配置文件，可以直接注入到属性中 -->
+    <util:properties id="app" location="classpath:application.properties" />
+
+    <import resource="classpath:mybatis-config.xml" />
+    <import resource="classpath:bean/bean-biz.xml" />
+    
+    <import resource="shiro/spring-config-shiro.xml"/>
+    
+</beans>

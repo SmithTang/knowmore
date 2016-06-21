@@ -43,7 +43,7 @@ public class AutoGeneratorUser extends ConfigGeneratorTest {
 		cg.setDbDriverName("com.mysql.jdbc.Driver");
 		cg.setDbUser("root");
 		cg.setDbPassword("TJDWX12598");
-		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/ischool?characterEncoding=utf8");
+		cg.setDbUrl("jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8");
 
 		/*
 		 * 表主键 ID 生成类型, 自增该设置无效。

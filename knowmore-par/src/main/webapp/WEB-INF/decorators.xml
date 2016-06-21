@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/layouts/">
+    <excludes>
+        <pattern>/upload/*</pattern>
+        
+    </excludes>
+
+    <decorator name="default" page="/WEB-INF/content/decorator/layouts/default.jsp">
+<!--         <pattern>/usr/*</pattern> -->
+<!--         <pattern>/sch/*</pattern> -->
+<!--         <pattern>/edu/*</pattern> -->
+    </decorator>
+</decorators>
