@@ -28,6 +28,9 @@ public class User implements Serializable {
 	/**  */
 	private Integer age;
 
+	/**  */
+	private String password;
+
 	public Integer getId() {
 		return this.id;
 	}
@@ -50,6 +53,14 @@ public class User implements Serializable {
 
 	public void setAge(Integer age) {
 		this.age = age;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

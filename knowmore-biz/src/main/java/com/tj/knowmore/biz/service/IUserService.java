@@ -10,5 +10,6 @@ import com.tj.knowmore.biz.user.model.User;
  */
 public interface IUserService extends ISuperService<User> {
 
-
+	User findByUsername(String currentUsername);
+	
 }

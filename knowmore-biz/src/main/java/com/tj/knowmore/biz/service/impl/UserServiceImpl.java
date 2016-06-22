@@ -15,5 +15,12 @@ import com.tj.knowmore.biz.user.model.User;
 @Service
 public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implements IUserService {
 
+	@Override
+	public User findByUsername(String currentUsername) {
+		User user = new User();
+        user.setName(currentUsername);
+        return baseMapper.selectOne(user);
+	}
+
 
 }

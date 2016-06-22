@@ -1,7 +1,7 @@
 package com.tj.knowmore.biz.user.mapper;
 
-import com.tj.mybatisplus.mapper.AutoMapper;
 import com.tj.knowmore.biz.user.model.User;
+import com.tj.mybatisplus.mapper.AutoMapper;
 
 /**
  *

@@ -32,11 +32,11 @@
     </bean>
 
     <!-- Realm实现 -->
-<!--     <bean id="myRealm" class="com.tj.knowmore.par.security.realm.MyRealm"/> -->
+    <bean id="myRealm" class="com.tj.knowmore.par.security.realm.MyRealm"/>
 
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-<!--         <property name="realm" ref="myRealm"/> -->
+        <property name="realm" ref="myRealm"/>
         <property name="cacheManager" ref="shiroEhcacheManager"/>
         <property name="sessionManager" ref="sessionManager"/>
         <property name="rememberMeManager" ref="rememberMeManager"/>
@@ -49,7 +49,7 @@
         <property name="unauthorizedUrl" value="/login?error=unauthor"/>
         <property name="filters">
             <util:map>
-<!--                 <entry key="userSetting" value-ref="userSettingFilter"/> -->
+                <entry key="userSetting" value-ref="userSettingFilter"/>
                 <entry key="kickout" value-ref="kickoutSessionControlFilter"/>
             </util:map>
         </property>
@@ -57,10 +57,11 @@
             <value>
                 /assets/**=anon
                 /login=anon
+<!--                 /index=user -->
                 /logout=logout
                 /=anon
                 /yiban/**=anon
-                /**=kickout,user
+                /**=kickout,user,userSetting
             </value>
         </property>
     </bean>
@@ -84,7 +85,7 @@
     </bean>
 
     <!-- 自定义filter 实现自定义session失效后重新设置 -->
-<!--     <bean id="userSettingFilter" class="com.ike.ischool.web.security.filter.UserSetting"/> -->
+    <bean id="userSettingFilter" class="com.tj.knowmore.par.security.filter.UserSetting"/>
 
     <!-- 控制登录人数 -->
     <bean id="kickoutSessionControlFilter" class="com.tj.knowmore.par.security.filter.KickoutSessionControlFilter">

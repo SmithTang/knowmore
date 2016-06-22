@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ike.ischool.main.usr.mapper.TeacherMapper">
+<mapper namespace="com.tj.knowmore.biz.user.mapper.UserMapper">
 
 	<!-- 通用查询结果列-->
 	<sql id="Base_Column_List">
-		 id, teacher_number, name, phone, address, email, title, status, create_time, update_time, user_id
+		 id, name, age, password
 	</sql>
 
 </mapper>
