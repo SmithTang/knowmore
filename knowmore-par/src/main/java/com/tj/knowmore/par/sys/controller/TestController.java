@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tj.knowmore.biz.service.IUserService;
-import com.tj.knowmore.biz.user.model.User;
+import com.tj.knowmore.biz.sys.service.ISysUserService;
 import com.tj.knowmore.par.security.encrypt.Coder;
 
 @Controller
@@ -25,7 +24,7 @@ import com.tj.knowmore.par.security.encrypt.Coder;
 public class TestController {
 	
 	@Autowired
-	private IUserService userService;
+	private ISysUserService userService;
 
 	@RequestMapping(method = RequestMethod.GET)
     public String index() {

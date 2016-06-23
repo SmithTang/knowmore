@@ -6,11 +6,11 @@ public class ConfigGeneratorTest {
 
     protected static ConfigGenerator getConfigGenerator() {
         ConfigGenerator cg = new ConfigGenerator();
-        cg.setEntityPackage("com.tj.entity");//entity 实体包路径
-        cg.setMapperPackage("com.tj.mapper");//mapper 映射文件路径
-        cg.setServicePackage("com.tj.service");//service 层路径
-        cg.setXmlPackage("com.tj.mapper.xml");//xml层路径（可以不写）
-        cg.setServiceImplPackage("com.tj.service.impl");//serviceimpl层路径（可以不写）
+        cg.setEntityPackage("com.tj.knowmore.biz.model");//entity 实体包路径
+        cg.setMapperPackage("com.tj.knowmore.biz.mapper");//mapper 映射文件路径
+        cg.setServicePackage("com.tj.knowmore.biz.service");//service 层路径
+        cg.setXmlPackage("com.tj.knowmore.biz.mapper.xml");//xml层路径（可以不写）
+        cg.setServiceImplPackage("com.tj.knowmore.biz.service.impl");//serviceimpl层路径（可以不写）
 
 		/* 此处可以配置 SuperServiceImpl 子类路径，默认如下 */
         //cg.setSuperServiceImpl("com.baomidou.framework.service.impl.SuperServiceImpl");

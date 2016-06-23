@@ -14,8 +14,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tj.knowmore.biz.service.IUserService;
-import com.tj.knowmore.biz.user.model.User;
+import com.tj.knowmore.biz.sys.model.SysUser;
+import com.tj.knowmore.biz.sys.service.ISysUserService;
 
 /**
  * 自定义的指定Shiro验证用户登录的类
@@ -25,7 +25,7 @@ import com.tj.knowmore.biz.user.model.User;
 public class MyRealm extends AuthorizingRealm {
 
     @Autowired
-    private IUserService userService;
+    private ISysUserService userService;
 
     /**
      * 为当前登录的Subject授予角色和权限
@@ -38,7 +38,7 @@ public class MyRealm extends AuthorizingRealm {
         // 获取当前登录的用户名,等价于(String)principals.fromRealm(this.getName()).iterator().next()
         String currentUsername = (String) super
                 .getAvailablePrincipal(principals);
-        User user = userService.findByUsername(currentUsername);
+        SysUser user = userService.findByUsername(currentUsername);
         SimpleAuthorizationInfo simpleAuthorInfo = new SimpleAuthorizationInfo();
         if (null != user) {
             return simpleAuthorInfo;
@@ -59,7 +59,7 @@ public class MyRealm extends AuthorizingRealm {
         System.out.println("验证当前Subject时获取到token为"
                 + ReflectionToStringBuilder.toString(token,
                         ToStringStyle.MULTI_LINE_STYLE));
-        User user = userService.findByUsername(token.getUsername());
+        SysUser user = userService.findByUsername(token.getUsername());
 //        System.out.println("---->"+user);
         if (null != user) {
 //            if (user.getStatus() == Constants.USER_STATUS_LOCK) {

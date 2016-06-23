@@ -9,13 +9,13 @@ import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.tj.knowmore.biz.service.IUserService;
-import com.tj.knowmore.biz.user.model.User;
+import com.tj.knowmore.biz.sys.model.SysUser;
+import com.tj.knowmore.biz.sys.service.ISysUserService;
 
 public class UserSetting extends AccessControlFilter {
 
     @Autowired
-    private IUserService userService;
+    private ISysUserService userService;
 
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
@@ -24,10 +24,10 @@ public class UserSetting extends AccessControlFilter {
             return false;
         }
         HttpSession session = ((HttpServletRequest) request).getSession();
-        User current_user = (User) session.getAttribute("login_user");
+        SysUser current_user = (SysUser) session.getAttribute("login_user");
         if (current_user == null) {
             String username = (String) subject.getPrincipal();
-            User user = userService.findByUsername(username);
+            SysUser user = userService.findByUsername(username);
             if (user == null) {
                 setLoginUrl("/login");
                 redirectToLogin(request, response);
