@@ -28,7 +28,7 @@ public class TestController {
 
 	@RequestMapping(method = RequestMethod.GET)
     public String index() {
-        return "index";
+        return "redirect:/index";
     }
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/index")
@@ -78,8 +78,6 @@ public class TestController {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            request.setAttribute("isAuthenticated", "true");
-            request.setAttribute("userName", userName);
             return "redirect:/index";
         } else {
             token.clear();

@@ -3,6 +3,9 @@
 <html>
 <head>
 <c:set var="ctx" value="${pageContext.request.contextPath}" scope="page"/>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
     <title>首页</title>
 </head>
 <body>
