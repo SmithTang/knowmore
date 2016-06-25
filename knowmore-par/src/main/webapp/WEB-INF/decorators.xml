@@ -9,5 +9,6 @@
 <!--         <pattern>/usr/*</pattern> -->
 <!--         <pattern>/sch/*</pattern> -->
 <!--         <pattern>/edu/*</pattern> -->
+			 <pattern>/index</pattern>
     </decorator>
 </decorators>

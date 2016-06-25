@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- <%@ include file="/WEB-INF/content/decorator/common.jsp" %> --%>
 <html>
 <head>
     <title>你好</title>
     <c:set var="ctx" value="${pageContext.request.contextPath}" />
 </head>
 <body>
-Hello world!
+
 <p></p>
 <form action="${ctx}" method="post">
 	<tr>
